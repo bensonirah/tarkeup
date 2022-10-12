@@ -33,8 +33,8 @@ var listCmd = &cobra.Command{
 	Short: "List existing repository",
 	Long:  `List existing repository.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		var username string = "b.randrianarison"
-		var password string = "mnus2HHP4EVgNmY"
+		var username string = "test"
+		var password string = "test"
 
 		client := &http.Client{}
 		req, err := http.NewRequest("GET", "https://tools.arkeup.com/svn/PHP/", nil)
