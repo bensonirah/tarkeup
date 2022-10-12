@@ -17,14 +17,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
-	"net/http"
-	"os"
-	"strconv"
-	s "strings"
 
-	"github.com/PuerkitoBio/goquery"
-	"github.com/aquasecurity/table"
 	"github.com/spf13/cobra"
 )
 
@@ -34,34 +27,7 @@ var repoCmd = &cobra.Command{
 	Short: "Manage arkeup repository",
 	Long:  `Manage an arkeup repository`,
 	Run: func(cmd *cobra.Command, args []string) {
-
-		var username string = "test"
-		var password string = "test"
-
-		client := &http.Client{}
-		req, err := http.NewRequest("GET", "https://tools.arkeup.com/svn/PHP/", nil)
-
-		req.SetBasicAuth(username, password)
-
-		resp, err := client.Do(req)
-
-		doc, err := goquery.NewDocumentFromReader(resp.Body)
-
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer resp.Body.Close()
-
-		t := table.New(os.Stdout)
-		t.SetHeaders("ID", "Name", "Url")
-		t.SetBorders(false)
-
-		doc.Find("ul li").Each(func(i int, qs *goquery.Selection) {
-			url := fmt.Sprintf("https://tools.arkeup.com/svn/PHP/%strunk", qs.Text())
-			name := s.Replace(qs.Text(), "/", "", 1)
-			t.AddRow(strconv.Itoa(i), name, url)
-		})
-		t.Render()
+		fmt.Println("Run repo command!")
 	},
 }
 
